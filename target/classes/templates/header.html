@@ -1,24 +1,24 @@
 <div th:fragment="header">
     <div class="header">
         <a href="/index.html?category=all" class="logo">
-            <img src="/images/logo.png" alt="STYLiSH Logo">
+            <img th:src="@{/images/logo.png}" alt="STYLiSH Logo">
         </a>
         <div class="nav">
-            <a href="/index.html?category=women" data-category="women">女裝</a>
-            <a href="/index.html?category=men" data-category="men">男裝</a>
-            <a href="/index.html?category=accessories" data-category="accessories">配件</a>
+            <a th:href="@{/index.html(category='women')}" data-category="women">女裝</a>
+            <a th:href="@{/index.html(category='men')}" data-category="men">男裝</a>
+            <a th:href="@{/index.html(category='accessories')}" data-category="accessories">配件</a>
         </div>
         <div class="search-cart">
             <input type="text" placeholder="搜尋">
             <button class="icon-button">
-                <img src="/images/search.png" alt="Search">
+                <img th:src="@{/images/search.png}" alt="Search">
             </button>
             <button class="icon-button">
-                <img src="/images/cart.png" alt="Cart">
+                <img th:src="@{/images/cart.png}" alt="Cart">
                 <span class="badge">1</span>
             </button>
             <button class="icon-button" id="user-button">
-                <img src="/images/member.png" alt="User">
+                <img th:src="@{/images/member.png}" alt="User">
             </button>
         </div>
     </div>

@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 function fetchProducts(category, page) {
     $.ajax({
-        url: `/api/1.0/products/${category}`,
+        url: `/stylish/api/1.0/products/${category}`,
         type: 'GET',
         data: {paging: page},
         success: function (data) {
