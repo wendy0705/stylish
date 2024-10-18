@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/stylish/api/1.0/marketing")
+@RequestMapping("/api/1.0/marketing")
 public class MarketingController {
 
     @Autowired

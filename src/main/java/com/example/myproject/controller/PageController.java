@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/stylish/api/1.0/products")
+@RequestMapping("/api/1.0/products")
 public class PageController {
 
     @Autowired
