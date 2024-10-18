@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Slf4j
 @Controller
-@RequestMapping("/api/1.0/order")
+@RequestMapping("/stylish/api/1.0/order")
 public class CheckoutController {
 
     @Autowired
