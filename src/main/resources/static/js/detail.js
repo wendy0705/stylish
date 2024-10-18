@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 function fetchProductDetails(productId) {
     $.ajax({
-            url: `/stylish/api/1.0/products/details?id=${productId}`,
+            url: `api/1.0/products/details?id=${productId}`,
             method: 'GET',
             success: function (response) {
                 const data = response.data;
@@ -158,7 +158,7 @@ function fetchProductDetails(productId) {
                     };
 
                     $.ajax({
-                        url: '/stylish/api/1.0/order/checkout',
+                        url: 'api/1.0/order/checkout',
                         method: 'POST',
                         contentType: 'application/json',
                         headers: {
