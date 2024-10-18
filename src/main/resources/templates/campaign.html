@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Campaign Management</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Add New Campaign</h1>
+<form id="campaignForm" enctype="multipart/form-data">
+    <label for="searchTitle">Search Product by Title:</label>
+    <input type="text" id="searchTitle" name="search_title" required>
+    <button type="button" id="searchButton">Search</button>
+    <br>
+
+    <div id="productList"></div>
+
+    <label for="picture">Picture:</label>
+    <input type="file" id="picture" name="picture" required><br>
+
+    <label for="story">Story:</label>
+    <textarea id="story" name="story" rows="5" required></textarea><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#searchButton').on('click', function () {
+            let title = $('#searchTitle').val();
+            $.ajax({
+                url: '/api/1.0/products/search',
+                type: 'GET',
+                data: {title: title},
+                success: function (response) {
+                    $('#productList').empty();
+                    $.each(response.data, function (index, product) {
+                        let productHtml = `
+                                <div class="product">
+                                    <input type="radio" name="product_id" value="${product.id}" required>
+                                    <strong>ID:</strong> ${product.id}<br>
+                                    <strong>Category:</strong> ${product.category}<br>
+                                    <strong>Title:</strong> ${product.title}<br>
+                                    <strong>Description:</strong> ${product.description}<br>
+                                    <strong>Price:</strong> ${product.price}<br>
+                                    <strong>Texture:</strong> ${product.texture}<br>
+                                    <strong>Wash:</strong> ${product.wash}<br>
+                                    <strong>Place:</strong> ${product.place}<br>
+                                    <strong>Note:</strong> ${product.note}<br>
+                                    <strong>Story:</strong> ${product.story}
+                                </div>`;
+                        $('#productList').append(productHtml);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error loading products:', error);
+                }
+            });
+        });
+
+        $('#campaignForm').on('submit', function (event) {
+            event.preventDefault();
+
+            let selectedProductId = $('input[name="product_id"]:checked').val();
+            if (!selectedProductId) {
+                alert('Please select a product');
+                return;
+            }
+
+            let formData = new FormData(this);
+            formData.append('product_id', selectedProductId);
+
+            $.ajax({
+                url: '/api/1.0/marketing/campaigns',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(data);
+                    alert('Campaign added successfully!');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                    alert('Error adding campaign');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

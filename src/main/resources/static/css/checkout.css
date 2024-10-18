@@ -1,0 +1,17 @@
+.tpfield {
+    height: 40px;
+    width: 300px;
+    border: 1px solid gray;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.tpfield,
+#submit-button {
+    display: none;
+}
+
+.tpfield.visible,
+#submit-button.visible {
+    display: block;
+}

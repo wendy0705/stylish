@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Upload Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<form id="productForm" enctype="multipart/form-data">
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category"><br>
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title"><br>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description"><br>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price"><br>
+
+    <label for="texture">Texture:</label>
+    <input type="text" id="texture" name="texture"><br>
+
+    <label for="wash">Wash:</label>
+    <input type="text" id="wash" name="wash"><br>
+
+    <label for="place">Place:</label>
+    <input type="text" id="place" name="place"><br>
+
+    <label for="note">Note:</label>
+    <input type="text" id="note" name="note"><br>
+
+    <label for="story">Story:</label>
+    <input type="text" id="story" name="story"><br>
+
+    <div id="colorFields">
+        <div class="colorField">
+            <label for="colorName">Color Name:</label>
+            <input type="text" id="colorName" name="colorName"><br>
+            <label for="colorCode">Color Code:</label>
+            <input type="text" id="colorCode" name="colorCode"><br>
+        </div>
+    </div>
+    <button type="button" id="addColorButton">Add Color</button>
+
+    <div id="sizeFields">
+        <div class="sizeField">
+            <label for="sizeName1">Size Name:</label>
+            <input type="text" id="sizeName1" name="sizeName1"><br>
+        </div>
+    </div>
+    <button type="button" id="addSizeButton">Add Size</button>
+    <br>
+
+    <label for="stocks">Stock Quantity:</label>
+    <input type="text" id="stocks" name="stocks"><br>
+
+    <label for="mainImage">Main Image:</label>
+    <input type="file" id="mainImage" name="mainImage"><br>
+
+    <label for="images">Other Images:</label>
+    <input type="file" id="images" name="images" multiple><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+        let colorFieldIndex = 1;
+        let sizeFieldIndex = 1;
+
+        $('#addColorButton').click(function () {
+            colorFieldIndex++;
+            let colorFieldHtml = `
+                    <div class="colorField">
+                        <label for="colorName${colorFieldIndex}">Color Name:</label>
+                        <input type="text" id="colorName${colorFieldIndex}" name="colorName${colorFieldIndex}"><br>
+                        <label for="colorCode${colorFieldIndex}">Color Code:</label>
+                        <input type="text" id="colorCode${colorFieldIndex}" name="colorCode${colorFieldIndex}"><br>
+                    </div>
+                `;
+            $('#colorFields').append(colorFieldHtml);
+        });
+
+        $('#addSizeButton').click(function () {
+            sizeFieldIndex++;
+            let sizeFieldHtml = `
+                    <div class="sizeField">
+                        <label for="sizeName${sizeFieldIndex}">Size Name:</label>
+                        <input type="text" id="sizeName${colorFieldIndex}" name="sizeName${colorFieldIndex}"><br>
+                    </div>
+                `;
+            $('#sizeFields').append(sizeFieldHtml);
+        });
+
+        $('#productForm').submit(function (event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            formData.append('stocks', $('#stocks').val());
+
+            let colors = [];
+            $('.colorField').each(function () {
+                let colorName = $(this).find('input[id^="colorName"]').val();
+                let colorCode = $(this).find('input[id^="colorCode"]').val();
+                if (colorName && colorCode) {
+                    colors.push({name: colorName, code: colorCode});
+                }
+            });
+
+            formData.append('colors', JSON.stringify(colors));
+
+            let sizes = [];
+            $('.sizeField').each(function () {
+                let size = $(this).find('input[id^="sizeName"]').val();
+                if (colorName && colorCode) {
+                    sizes.push(size);
+                }
+            });
+
+            formData.append('sizes', JSON.stringify(sizes));
+
+            $.ajax({
+                url: '/admin/create',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    const container = document.createElement("h2");
+                    container.innerText = "Load successfully";
+                    document.querySelector('form').appendChild(container);
+                },
+                error: function (xhr) {
+                    const container = document.createElement("h2");
+                    if (xhr.status) {
+                        container.innerText = `Error: ${xhr.status}`;
+                    } else {
+                        container.innerText = 'Request failed';
+                    }
+                    container.style.color = 'red';
+                    document.querySelector('form').appendChild(container);
+                }
+            });
+
+        });
+    });
+</script>
+</body>
+</html>
+

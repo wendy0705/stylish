@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLiSH</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/common.js}" type="text/javascript"></script>
+    <script th:src="@{/js/script.js}" type="text/javascript"></script>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="banner">
+    <img src="" alt="Campaign Image" id="campaign-image">
+    <div class="banner-text"></div>
+</div>
+<div id="product-list">
+
+</div>
+<div class="footer">
+    <a href="#">關於 STYLiSH</a>
+    <a href="#">服務條款</a>
+    <a href="#">隱私政策</a>
+    <a href="#">聯絡我們</a>
+    <a href="#">FAQ</a>
+    <div>© 2024 All rights reserved.</div>
+</div>
+</body>
+</html>

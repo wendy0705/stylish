@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
+    <link rel="stylesheet" th:href="@{/css/checkout.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/detail.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/checkout.js}" type="text/javascript"></script>
+    <script th:src="@{/js/common.js}" type="text/javascript"></script>
+    <script th:src="@{/js/detail.js}" type="text/javascript"></script>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div id="product-container">
+    <div id="product-div">
+        <img id="main-image" src="" alt="Product Image">
+        <div id="product-main">
+            <h1 id="product-title"></h1>
+            <p id="product-id"></p>
+            <p id="product-price"></p>
+            <hr>
+            <div id="product-options">
+                <div id="colors-div">
+                    <label for="product-colors">顏色 |</label>
+                    <div id="product-colors">
+                        <!-- Color options will be dynamically added here -->
+                    </div>
+                </div>
+                <div id="sizes-div">
+                    <label for="product-sizes">尺寸 |</label>
+                    <div id="product-sizes">
+                        <!-- Size options will be dynamically added here -->
+                    </div>
+                </div>
+                <div id="quantity-div">
+                    <label for="product-quantity">數量 |</label>
+                    <div id="product-quantity-wrapper">
+                        <span id="quantity-minus">-</span>
+                        <input type="number" id="product-quantity" value="1" min="1" readonly>
+                        <span id="quantity-plus">+</span>
+                    </div>
+                </div>
+            </div>
+            <button id="add-to-cart">結帳</button>
+            <div class="tpfield" id="card-number"></div>
+            <div class="tpfield" id="card-expiration-date"></div>
+            <div class="tpfield" id="card-ccv"></div>
+
+            <button id="submit-button" disabled>Submit</button>
+            <p id="product-note"></p>
+            <p id="product-texture"></p>
+            <p id="product-wash"></p>
+            <p id="product-place"></p>
+        </div>
+    </div>
+    <hr>
+    <div id="product-details">
+        <p id="product-description"></p>
+        <p id="product-story"></p>
+    </div>
+    <div id="product-images"></div>
+
+</div>
+<div class="footer">
+    <a href="#">關於 STYLiSH</a>
+    <a href="#">服務條款</a>
+    <a href="#">隱私政策</a>
+    <a href="#">聯絡我們</a>
+    <a href="#">FAQ</a>
+    <div>© 2024 All rights reserved.</div>
+</div>
+</body>
+</html>

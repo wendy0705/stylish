@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="product-list"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        function fetchProducts(keyword) {
+            $.ajax({
+                url: `/api/1.0/products/search`,
+                type: 'GET',
+                data: {keyword: keyword},
+                success: function (data) {
+                    if (!data.data.length && page > 0) return;
+
+                    currentPage = page;
+
+                    const productList = $('#product-list');
+                    productList.empty();
+
+                    const jsonData = JSON.stringify(data, null, 2);
+                    const jsonPre = $('<pre>').text(jsonData);
+                    productList.append(jsonPre);
+                },
+                error: function () {
+                    console.error('Error:', jqXHR.responseJSON.error);
+                }
+
+            });
+        }
+
+        fetchProducts(keyword);
+    });
+</script>
+</body>
+</html>
