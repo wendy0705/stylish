@@ -5,7 +5,7 @@ $(document).ready(function () {
         $('#auth-container').show();
     } else {
         $.ajax({
-            url: window.location.origin + 'api/1.0/user/profile',
+            url: 'api/1.0/user/profile',
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -43,7 +43,7 @@ $(document).ready(function () {
         // console.log('Request body:', requestBody);
 
         $.ajax({ //get native sign in token
-            url: window.location.origin + 'api/1.0/user/signin',
+            url: 'api/1.0/user/signin',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(requestBody),
@@ -96,7 +96,7 @@ $(document).ready(function () {
         console.log(requestBody);
 
         $.ajax({ //get native sign up token
-            url: window.location.origin + 'api/1.0/user/signup',
+            url: 'api/1.0/user/signup',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(requestBody),
@@ -134,7 +134,7 @@ function statusChangeCallback(response) {
 function sendLoginInfoToBackend(accessToken) {
     $.ajax({ //get fb sign in token
         type: 'POST',
-        url: window.location.origin + 'api/1.0/user/signin',
+        url: 'api/1.0/user/signin',
         contentType: 'application/json',
         data: JSON.stringify({
             provider: "facebook",
