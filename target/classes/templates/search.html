@@ -12,7 +12,7 @@
     $(document).ready(function () {
         function fetchProducts(keyword) {
             $.ajax({
-                url: `/stylish/api/1.0/products/search`,
+                url: `api/1.0/products/search`,
                 type: 'GET',
                 data: {keyword: keyword},
                 success: function (data) {

@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 function fetchProductDetails(productId) {
     $.ajax({
-            url: `/stylish/api/1.0/products/details?id=${productId}`,
+            url: `api/1.0/products/details?id=${productId}`,
             method: 'GET',
             success: function (response) {
                 const data = response.data;
@@ -108,7 +108,7 @@ function fetchProductDetails(productId) {
 
                     const token = localStorage.getItem('token');
                     if (!token || token === 'undefined') {
-                        window.location.href = '/profile.html';
+                        window.location.href = `profile.html`;
                         return;
                     }
 
@@ -158,7 +158,7 @@ function fetchProductDetails(productId) {
                     };
 
                     $.ajax({
-                        url: '/stylish/api/1.0/order/checkout',
+                        url: 'api/1.0/order/checkout',
                         method: 'POST',
                         contentType: 'application/json',
                         headers: {
@@ -167,7 +167,7 @@ function fetchProductDetails(productId) {
                         data: JSON.stringify(orderData),
                         success: function (response) {
                             console.log('Response:', JSON.stringify(response, null, 2));
-                            window.location.href = '/thankyou.html';
+                            window.location.href = `thankyou.html`;
                         },
                         error: function (error) {
                             alert('Error sending order:', error);

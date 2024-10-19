@@ -36,7 +36,7 @@
         $('#searchButton').on('click', function () {
             let title = $('#searchTitle').val();
             $.ajax({
-                url: '/stylish/api/1.0/products/search',
+                url: 'api/1.0/products/search',
                 type: 'GET',
                 data: {title: title},
                 success: function (response) {
@@ -78,7 +78,7 @@
             formData.append('product_id', selectedProductId);
 
             $.ajax({
-                url: '/stylish/api/1.0/marketing/campaigns',
+                url: 'api/1.0/marketing/campaigns',
                 type: 'POST',
                 data: formData,
                 processData: false,
