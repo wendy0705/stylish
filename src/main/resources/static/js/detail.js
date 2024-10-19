@@ -108,7 +108,7 @@ function fetchProductDetails(productId) {
 
                     const token = localStorage.getItem('token');
                     if (!token || token === 'undefined') {
-                        window.location.href = '/profile.html';
+                        window.location.href = `profile.html`;
                         return;
                     }
 
@@ -167,7 +167,7 @@ function fetchProductDetails(productId) {
                         data: JSON.stringify(orderData),
                         success: function (response) {
                             console.log('Response:', JSON.stringify(response, null, 2));
-                            window.location.href = '/thankyou.html';
+                            window.location.href = `thankyou.html`;
                         },
                         error: function (error) {
                             alert('Error sending order:', error);

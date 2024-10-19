@@ -12,7 +12,7 @@ $(document).ready(function () {
     }
 
     $('#user-button').click(function () {
-        window.location.href = 'profile.html';
+        window.location.href = `profile.html`;
     });
 
 });
