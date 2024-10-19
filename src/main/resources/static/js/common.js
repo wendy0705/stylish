@@ -12,7 +12,7 @@ $(document).ready(function () {
     }
 
     $('#user-button').click(function () {
-        window.location.href = 'stylish/stylish/profile.html';
+        window.location.href = 'stylish/profile.html';
     });
 
 });
